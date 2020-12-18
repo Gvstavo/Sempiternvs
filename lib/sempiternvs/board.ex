@@ -1,6 +1,9 @@
 defmodule Sempiternvs.Board do
 	alias Sempiternvs.Board
-
+#	require Protocol
+	#Protocol.derive(Jason.Encoder, Mongo.Stream)
+	@derive Jason.Encoder
+	#@derive Poison.Encoder
 	defp boards do
 		[
 			%{nome: "Random", cod: "\\b\\"},
@@ -25,6 +28,11 @@ defmodule Sempiternvs.Board do
 	def all, do: 
 		:mongo 
 		|> Mongo.find("boards",%{})
+		#|> Map.get(:docs) 
+		
+	#	|> Map.new
+	#	|> IO.inspect
+		#|> Enum.map(&Map.update!(&1 , "_id", fn x -> BSON.ObjectId.encode!(x)  end))
 
 
 

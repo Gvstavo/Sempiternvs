@@ -19,6 +19,15 @@ defmodule SempiternvsWeb.Router do
     get "/", PageController, :index
   end
 
+   scope "/api", SempiternvsWeb do
+
+    pipe_through :api
+    
+    get "/boards", PageController, :boards
+
+
+  end  
+
   # Other scopes may use custom stacks.
   # scope "/api", SempiternvsWeb do
   #   pipe_through :api

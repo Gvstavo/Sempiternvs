@@ -3,6 +3,9 @@
 // its own CSS file.
 import "../css/app.scss"
 
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './home';
 // webpack automatically bundles all modules in your
 // entry points. Those entry points can be configured
 // in "webpack.config.js".
@@ -13,3 +16,9 @@ import "../css/app.scss"
 //     import socket from "./socket"
 //
 import "phoenix_html"
+
+
+ReactDOM.render(
+<App/>,
+  document.getElementById('root')
+);
