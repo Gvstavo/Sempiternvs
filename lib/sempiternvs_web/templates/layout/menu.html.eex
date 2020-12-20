@@ -1,0 +1,19 @@
+<ul>
+	 <%= 
+    link("Home", to: "/")
+
+    
+    %>
+  <%= for board <- Sempiternvs.Board.all do %>
+
+    <li style= "display: inline;" >
+    	<%= 
+    		link("/#{board["cod"]}/", to: "/#{board["cod"]}")
+
+    
+    	%>
+    	
+	</li>
+
+	<% end %>
+</ul>	

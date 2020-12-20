@@ -1,0 +1,70 @@
+  
+  <form  action="<%= Routes.thread_path(@conn, :create) %>" style= "text-align: center" enctype="multipart/form-data" method="post" id = "thread_form">
+    <h2 >[NEW THREAD]</h2>
+     <input type="hidden" name="_csrf_token" value="<%= @token %>">
+    <div >
+      <label for="email">E-mail</label>
+      <input type="text" id="email" name="email"  >
+    </div>
+
+    <div >
+      <label for="titulo">Subject</label>
+      <input type="text" id="titulo" name="titulo"  required>
+    </div>
+    <div>
+      Comment
+      <textarea rows="4" cols="50" name="msg" form="thread_form" >
+      </textarea>
+    </div>
+
+    <div >
+      <label for="arquivos">File</label>
+        <input type="file" id="arquivos" name="arquivos[]" multiple="multiple" required >
+    </div>
+
+   <div >
+        <input type="submit" value = "New topic">
+    </div>
+    <input type="hidden" value= "b" name="board">
+
+
+  </form>
+
+   <div style= "display: inline;">
+      <%= for i <- Sempiternvs.Thread.all("b") do %>
+        
+
+      <div>
+        <p>
+          <%= raw(i["titulo"]) %>
+        &nbsp;
+          <%= raw(i["author"]) %>
+        &nbsp;
+          <%= raw(DateTime.to_iso8601 i["inserted_at"]) %>
+        &nbsp;
+          No.<%= i["_id"] |> BSON.ObjectId.encode!%>
+        &nbsp;
+          <%= raw("<a href = \"reply/b/#{i["_id"] |> BSON.ObjectId.encode! }\"> [Reply]</a>") %>
+        </p>    
+      </div>
+
+      <p>
+
+        <%= for k <- i["arquivos"] do %>
+
+          <%= raw("<img src=\"/images/board/b/#{k}\" style=\"width: 300px; height: 282px;\">")%>
+        <%= end %>
+
+       
+           <%= raw(i["msg"]) %>
+       
+         
+      </p>
+
+
+       
+      <%= end %>
+
+  </div>
+
+

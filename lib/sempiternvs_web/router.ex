@@ -17,16 +17,27 @@ defmodule SempiternvsWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+
+    get "/b", BoardController, :b
+
+    post "/create", ThreadController, :create
+
+    get "/reply/:board/:id", ReplyController, :index
+
+    post "/create_reply", ReplyController, :create
+
+
   end
 
-   scope "/api", SempiternvsWeb do
+  #  scope "/api", SempiternvsWeb do
 
-    pipe_through :api
+  #   pipe_through :api
     
-    get "/boards", PageController, :boards
+  #   get "/boards", PageController, :boards
 
+  #   get "/thread/:cod",  BoardController, :index 
 
-  end  
+  # end  
 
   # Other scopes may use custom stacks.
   # scope "/api", SempiternvsWeb do

@@ -8,5 +8,5 @@ defmodule SempiternvsWeb.PageController do
     render(conn, "index.html", %{token: token})
   end
 
-  def boards(conn , _paramns), do: conn |> json(Board.all)
+  def boards(conn , _paramns), do:  conn |> json(Board.all)
 end

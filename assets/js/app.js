@@ -18,7 +18,7 @@ import App from './home';
 import "phoenix_html"
 
 
-ReactDOM.render(
-<App/>,
-  document.getElementById('root')
-);
+// ReactDOM.render(
+// <App/>,
+//   document.getElementById('root')
+// );

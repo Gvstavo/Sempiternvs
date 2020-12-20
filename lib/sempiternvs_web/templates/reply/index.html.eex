@@ -1,0 +1,59 @@
+  <form  action="<%= Routes.reply_path(@conn, :create) %>" style= "text-align: center" enctype="multipart/form-data" method="post" id = "thread_form">
+     <input type="hidden" name="_csrf_token" value="<%= @token %>">
+    <div >
+      <label for="email">E-mail</label>
+      <input type="text" id="email" name="email"  >
+    </div>
+
+    <div >
+      <label for="titulo">Subject</label>
+      <input type="text" id="titulo" name="titulo" >
+    </div>
+    <div>
+      Comment
+      <textarea rows="4" cols="50" name="msg" form="thread_form" required>
+      </textarea>
+    </div>
+
+    <div >
+      <label for="arquivos">File</label>
+        <input type="file" id="arquivos" name="arquivos[]" multiple="multiple"  >
+    </div>
+
+   <div >
+        <input type="submit" value = "New reply">
+    </div>
+        <input type="hidden" name="thread_id" value="<%= @id %>">
+        <input type="hidden" value= "b" name="board">
+
+
+  </form>
+
+     <div style= "display: inline;">
+      
+        <div>
+          <p>
+            <%= @thread["titulo"] %>
+          &nbsp;  
+            <%=  @thread["author"] %>
+          &nbsp;
+            <%= raw(DateTime.to_iso8601 @thread["inserted_at"]) %>
+          &nbsp;
+            No.<%= @thread["_id"] |> BSON.ObjectId.encode!%>
+          </p>    
+      </div>
+          <p>
+
+        <%= for k <- @thread["arquivos"] do %>
+
+          <%= raw("<img src=\"/images/board/b/#{k}\" style=\"width: 300px; height: 282px;\">")%>
+        <%= end %>
+
+       
+           <%= @thread["msg"] %>
+         </p>
+       
+         
+      </p>
+
+  </div>
